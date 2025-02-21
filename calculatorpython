@@ -1,0 +1,49 @@
+def calculatrice():
+    while True:
+        # Demander à l'utilisateur de choisir une opération
+        print("\nChoisissez une opération : +, -, *, /, ** ou 'q' pour quitter")
+        operation = input("Opération : ")
+
+        # Option pour quitter
+        if operation == 'q':
+            print("Au revoir !")
+            break
+
+        # Demander les deux nombres
+        try:
+            nombre1 = float(input("Entrez le premier nombre : "))
+            nombre2 = float(input("Entrez le deuxième nombre : "))
+        except ValueError:
+            print("Erreur : Veuillez entrer des nombres valides.")
+            continue
+
+        # Simuler SELON avec un dictionnaire
+        def addition(x, y): return x + y
+        def soustraction(x, y): return x - y
+        def multiplication(x, y): return x * y
+        def division(x, y): return "Erreur : Division par zéro" if y == 0 else x / y
+        def puissance(x, y): return x ** y
+       
+
+
+        operations = {
+            '+': addition,
+            '-': soustraction,
+            '*': multiplication,
+            '/': division,
+            '**': puissance
+
+        }
+
+        # Sélection de l'opération
+        if operation in operations:
+            resultat = operations[operation](nombre1, nombre2)
+            if isinstance(resultat, str):  # En cas de division par zéro
+                print(resultat)
+            else:
+                print(f"Le résultat est : {resultat}")
+        else:
+            print("Opération invalide. Veuillez choisir parmi +, -, *, /.")
+
+# Appel de la fonction calculatrice
+calculatrice()
